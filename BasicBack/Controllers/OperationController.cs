@@ -13,8 +13,10 @@ namespace BasicBack.Controllers
         }
 
         [HttpPost]
-        public decimal Subtract([FromBody] Numbers numbers)
+        public decimal Subtract([FromBody] Numbers numbers, [FromHeader] string Host, [FromHeader(Name = "Content-Length")] string ContentLength)
         {
+            Console.WriteLine(Host);
+            Console.WriteLine(ContentLength);
             return numbers.a - numbers.b;
         }
     }
