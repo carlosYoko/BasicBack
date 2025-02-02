@@ -9,7 +9,7 @@ namespace BasicBack.Controllers
     {
         private IPeopleService _peopleService;
 
-        public PeopleController(IPeopleService peopleService)
+        public PeopleController([FromKeyedServices("peopleService2")] IPeopleService peopleService)
         {
             _peopleService = peopleService;
         }

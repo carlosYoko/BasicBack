@@ -3,7 +3,8 @@ using BasicBack.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<IPeopleService, PeopleService2>();
+//builder.Services.AddSingleton<IPeopleService, PeopleService2>();
+builder.Services.AddKeyedSingleton<IPeopleService, PeopleService2>("peopleService2");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
