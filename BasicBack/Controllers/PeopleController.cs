@@ -13,9 +13,16 @@ namespace BasicBack.Controllers
         }
 
         [HttpGet("{id}")]
-        public People Get(int id)
+        public ActionResult<People> Get(int id)
         {
-            return Repository.People.FirstOrDefault(p => p.Id == id)!;
+            var person = Repository.People.FirstOrDefault(p => p.Id == id)!;
+
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(person);
         }
 
         [HttpGet("search/{search}")]
