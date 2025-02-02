@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BasicBack.Controllers
 {
@@ -12,5 +11,17 @@ namespace BasicBack.Controllers
         {
             return a + b;
         }
+
+        [HttpPost]
+        public decimal Subtract([FromBody] Numbers numbers)
+        {
+            return numbers.a - numbers.b;
+        }
+    }
+
+    public class Numbers
+    {
+        public decimal a { get; set; }
+        public decimal b { get; set; }
     }
 }
