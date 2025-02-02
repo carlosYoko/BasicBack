@@ -11,7 +11,7 @@ namespace BasicBack.Controllers
 
         public PeopleController(IPeopleService peopleService)
         {
-            _peopleService = new PeopleService();
+            _peopleService = peopleService;
         }
 
         [HttpGet("all")]
