@@ -31,6 +31,15 @@ namespace BasicBack.Controllers
             return Repository.People.Where(p => p.Name!.ToUpper().Contains(search.ToUpper())).ToList();
         }
 
+        [HttpPost]
+        public IActionResult Add(People people)
+        {
+            if (string.IsNullOrEmpty(people.Name)) return BadRequest("Name is required");
+            people.Id = Repository.People.Count() + 1;
+            Repository.People.Add(people);
+
+            return NoContent();
+        }
     }
 
     public class Repository
