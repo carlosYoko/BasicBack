@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BasicBack.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BasicBack.Controllers
 {
@@ -6,6 +7,13 @@ namespace BasicBack.Controllers
     [ApiController]
     public class PeopleController : ControllerBase
     {
+        private IPeopleService _peopleService;
+
+        public PeopleController(IPeopleService peopleService)
+        {
+            _peopleService = new PeopleService();
+        }
+
         [HttpGet("all")]
         public List<People> GetPeople()
         {
@@ -34,7 +42,7 @@ namespace BasicBack.Controllers
         [HttpPost]
         public IActionResult Add(People people)
         {
-            if (string.IsNullOrEmpty(people.Name)) return BadRequest("Name is required");
+            if (!_peopleService.Validate(people)) return BadRequest("Name is required");
             people.Id = Repository.People.Count() + 1;
             Repository.People.Add(people);
 
